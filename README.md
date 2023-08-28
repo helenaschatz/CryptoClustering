@@ -1,5 +1,5 @@
 <h1 align="center"> Unsupervised Learning Challenge </h1>
-<p align="center">
+
 
 In this challenge, the goal is to use `Python`, particularly through the `sklearn library`, and `Unsupervised Machine Learning` to cluster cryptocurrencies based on their patterns of 24-hour or 7-day price changes. <br>
 Substantively, the project just groups cryptocurrencies that have had similar price change behaviors, i.e., it is descriptive.
@@ -37,13 +37,34 @@ Principal component analysis (PCA) was used to fit the dimensions of the dataset
 
 In this phase, I implemented dimensionality reduction technique to reduce the features to `three principal components`. I also retrieve the explained variance to determine how much information can be attributed to each principal component. <br>
  - The **total explained variance** of the **three principal components is 89.5%**. <br>
- This means that although we reduced the dimension of the scaled data to 3 but only lost the ability to explain **10.5%** of the variance in the dataset. 
+ This means that although we reduced the dimension of the scaled data to 3 but only lost the ability to explain **10.5%** of the variance in the dataset.
+
+![elbow_curve_orig_data](https://github.com/helenaschatz/CryptoClustering/blob/main/Graphs/PCA%20variance.png?raw=true)
+
+## Find the Best Value for k Using PCA Data
 
 Using the elbow method once again, I obsereved the best value for `k` (Fig 3) using the PCA data. The elbow curve for the PCA dimension redution data again shows a best **k-value = 4**. This is perhaps more pronounced compared to the best predicted `k-value` in the original dataset.
+
+ - **Fig 3 |** The best value for **k = 4**.
 
 ![elbow_curve_orig_data](https://github.com/helenaschatz/CryptoClustering/blob/main/Graphs/elbow%20curve%202.png?raw=true)
 <br>
 
 
-![image](https://github.com/helenaschatz/CryptoClustering/assets/124745795/9c431390-8ad4-41e2-98a2-0abbc13a5884)
+## Cluster Cryptocurrencies with K-means Using the PCA Data
+
+`K-Means` model was used again, this time to train the PCA-output data, to produce four clusters of the relationship between the first two of three principal components **(PC1 and PC2)**. These two are used in a two-dimensional plot because they each explain more variance in the original dataset than **PC3**.
+
+ - **Fig 4 |** Predicted clusters from the PCA-output data of the relationship between the first and second of three principal components, which explain the most variance of the original dataset.
+
+![elbow_curve_orig_data](https://github.com/helenaschatz/CryptoClustering/blob/main/Graphs/PC1.png?raw=true)
+<br>
+
+
+## Conclusion 
+
+
+   **Question:** After visually analyzing the cluster analysis results, what is the impact of using fewer features to cluster the data using `K-Means`?
+
+   **Answer:**  The impact of using `PCA` data results in tighter, more compact, less dispersed clusters. This is because the goal of `PCA` is to capture as much of the variance in the data with fewer features (i.e., principal components). This can help clarify patterns in the data, especially when visualizing it. With less "noise", clusters are more condensed.
 
